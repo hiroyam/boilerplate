@@ -5,7 +5,6 @@ main:
 		-std=c++11 -Wall -O3 \
 		-mavx \
 		-fopenmp
-	./a.out
 
 #   for assembler
 # 	g++ main.cpp \
