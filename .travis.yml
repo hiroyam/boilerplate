@@ -13,4 +13,4 @@ install:
 
 script:
   - g++ --version
-  - g++-4.8 -Wall -Wextra -pedantic -std=c++11 main.cpp
+  - make
