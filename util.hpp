@@ -5,8 +5,10 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
-#include <fstream>
 #include <thread>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 #include <immintrin.h>
 #include <omp.h>
