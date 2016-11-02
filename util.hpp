@@ -325,6 +325,13 @@ size_t max_index(const T &vec) {
     return std::max_element(begin_iterator, std::end(vec)) - begin_iterator;
 }
 
+vec_t onehot(const size_t i, const size_t N) {
+    vec_t v(N);
+    std::fill(v.begin(), v.end(), 0.0f);
+    v[i] = 1.0f;
+    return v;
+}
+
 template<typename T, typename U>
 U rescale(T x, T src_min, T src_max, U dst_min, U dst_max) {
     U value =  static_cast<U>(((x - src_min) * (dst_max - dst_min)) / (src_max - src_min) + dst_min);
