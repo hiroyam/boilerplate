@@ -23,6 +23,7 @@ void run() {
             tb[tb_i] = b[b_i];
         }
     }
+// #pragma omp parallel for schedule(dynamic) private(r)
     for (int i = 0; i < N; i++) {
         progress_display(i, N);
         for (int j = 0; j < N; j++) {
