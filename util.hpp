@@ -304,7 +304,7 @@ void gaussian_rand(Iter begin, Iter end, float_t mean, float_t sigma) {
 }
 
 inline bool probability_of(float_t p) {
-    return uniform_rand(0.0f, 1.0f) < p) ? true : false;
+    return (uniform_rand(0.0f, 1.0f) < p) ? true : false;
 }
 
 /********************************************************************************
