@@ -303,6 +303,10 @@ void gaussian_rand(Iter begin, Iter end, float_t mean, float_t sigma) {
     for (Iter it = begin; it != end; ++it) *it = gaussian_rand(mean, sigma);
 }
 
+inline bool probability_of(float_t p) {
+    return uniform_rand(0.0f, 1.0f) < p) ? true : false;
+}
+
 /********************************************************************************
  *
  * misc
@@ -340,6 +344,10 @@ U rescale(T x, T src_min, T src_max, U dst_min, U dst_max) {
 
 inline void nop() {
     // do nothing
+}
+
+inline float_t clamp(float_t x) {
+    return std::min(1.0f, std::max(0.0f, x));
 }
 
 /********************************************************************************
