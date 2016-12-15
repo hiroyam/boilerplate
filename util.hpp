@@ -20,7 +20,7 @@ namespace cc {
  * config
  *
  ********************************************************************************/
-using float_t = float;
+using float_t = double;
 
 /********************************************************************************
  *
@@ -304,7 +304,7 @@ void gaussian_rand(Iter begin, Iter end, float_t mean, float_t sigma) {
 }
 
 inline bool probability_of(float_t p) {
-    return (uniform_rand(0.0f, 1.0f) < p) ? true : false;
+    return (uniform_rand(0.0, 1.0) < p) ? true : false;
 }
 
 /********************************************************************************
@@ -347,7 +347,7 @@ inline void nop() {
 }
 
 inline float_t clamp(float_t x) {
-    return std::min(1.0f, std::max(0.0f, x));
+    return std::min((float_t)1.0, std::max((float_t)0.0, x));
 }
 
 /********************************************************************************
