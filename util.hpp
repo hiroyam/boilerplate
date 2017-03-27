@@ -87,7 +87,7 @@ inline std::string colorant(const char color, const std::string str) {
  ********************************************************************************/
 class timer {
 public:
-    timer() : _t(std::chrono::high_resolution_clock::now()), _sum(0.0) {};
+    timer() : _t(std::chrono::high_resolution_clock::now()) {};
     double elapsed() {
         return std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _t).count();
     }
@@ -99,13 +99,32 @@ public:
         _t = std::chrono::high_resolution_clock::now();
     }
 
+private:
+    std::chrono::high_resolution_clock::time_point _t;
+};
+
+/********************************************************************************
+ *
+ * swatch
+ *
+ ********************************************************************************/
+class swatch {
+public:
+    swatch(const char *title = "") : _title(title), _sum(0.0) {};
+
+    ~swatch() {
+        std::cout << format_str("%-46s: %.3f sec", _title.c_str(), _sum) << std::endl;
+    }
+
     void st() { _st   = std::chrono::high_resolution_clock::now(); }
     void et() { _sum += std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _st).count(); }
-    void total(const char *title = "") {
-        std::cout << format_str("%-46s: %.3f sec", title, _sum) << std::endl;
-    }
+//     void total() {
+//         std::cout << format_str("%-46s: %.3f sec", _title.c_str(), _sum) << std::endl;
+//     }
+
 private:
-    std::chrono::high_resolution_clock::time_point _t, _st;
+    std::chrono::high_resolution_clock::time_point _st;
+    std::string _title;
     double _sum;
 };
 
