@@ -87,26 +87,28 @@ inline std::string colorant(const char color, const std::string str) {
  ********************************************************************************/
 class timer {
 public:
-    timer() : t1(std::chrono::high_resolution_clock::now()) {};
-    double elapsed() {return std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - t1).count(); }
-    void   restart() {t1 = std::chrono::high_resolution_clock::now(); }
-    void   start()   {t1 = std::chrono::high_resolution_clock::now(); }
-    void   stop()    {t2 = std::chrono::high_resolution_clock::now(); }
-    double total()   {stop(); return std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1).count(); }
-
-    void print(const char *name = "") {
-        std::cout << format_str("%-46s: %.3f sec", name, elapsed()) << std::endl;
+    timer() : _t(std::chrono::high_resolution_clock::now()), _sum(0.0) {};
+    double elapsed() {
+        return std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _t).count();
+    }
+    void print(const char *title = "") {
+        std::cout << format_str("%-46s: %.3f sec", title, elapsed()) << std::endl;
+    }
+    void lap(const char *title = "") {
+        print(title);
+        _t = std::chrono::high_resolution_clock::now();
     }
 
-    void print_with_gflops(const char *name = "", double ops = 0.0) {
-        std::cout << format_str("%-46s: %.3f sec : %.1f Gflops", name, elapsed(), ops / elapsed() / 1e9) << std::endl;
+    void st() { _st   = std::chrono::high_resolution_clock::now(); }
+    void et() { _sum += std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _st).count(); }
+    void total(const char *title = "") {
+        std::cout << format_str("%-46s: %.3f sec", title, _sum) << std::endl;
     }
-
-    ~timer() {}
-
 private:
-    std::chrono::high_resolution_clock::time_point t1, t2;
+    std::chrono::high_resolution_clock::time_point _t, _st;
+    double _sum;
 };
+
 
 /********************************************************************************
  *
