@@ -20,7 +20,7 @@ namespace cc {
  * config
  *
  ********************************************************************************/
-using float_t = double;
+using float_t = float;
 
 /********************************************************************************
  *
@@ -118,9 +118,6 @@ public:
 
     void st() { _st   = std::chrono::high_resolution_clock::now(); }
     void et() { _sum += std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _st).count(); }
-//     void total() {
-//         std::cout << format_str("%-46s: %.3f sec", _title.c_str(), _sum) << std::endl;
-//     }
 
 private:
     std::chrono::high_resolution_clock::time_point _st;
