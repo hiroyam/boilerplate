@@ -269,7 +269,8 @@ inline bool operator!=(const aligned_allocator<T1, alignment> &, const aligned_a
     return false;
 }
 
-using vec_t = std::vector<float_t, aligned_allocator<float_t, 64>>;
+using vec_t    = std::vector<float_t, aligned_allocator<float_t, 64>>;
+using tensor_t = std::vector<vec_t>;
 
 /********************************************************************************
  *
@@ -387,12 +388,6 @@ inline bool is_near(const vec_t &a, const vec_t &b) {
         throw std::runtime_error("failed to compare vectors: vector size invalid");
     }
     for (size_t i = 0; i < a.size(); i++) {
-//         if (std::abs(a[i] - b[i]) > 0.01f) {
-//             static int count = 0;
-//             if (count++ < 1080) {
-//                 printf("DEBUG CODE: %d %.3f %.3f\n", i,  a[i], b[i]);
-//             }
-//         }
         if (!is_near(a[i], b[i])) {
             return false;
         }
