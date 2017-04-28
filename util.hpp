@@ -271,6 +271,7 @@ inline bool operator!=(const aligned_allocator<T1, alignment> &, const aligned_a
 
 using vec_t    = std::vector<float_t, aligned_allocator<float_t, 64>>;
 using tensor_t = std::vector<vec_t>;
+using label_t  = int;
 
 /********************************************************************************
  *
@@ -363,6 +364,11 @@ U rescale(T x, T src_min, T src_max, U dst_min, U dst_max) {
 
 inline void nop() {
     // do nothing
+}
+
+template <typename T>
+inline T sqr(T value) {
+  return value * value;
 }
 
 inline float_t clamp(float_t x) {
