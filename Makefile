@@ -6,6 +6,7 @@ main:
 		-mavx -fopenmp
 
 run:
+	@echo "\033[33m=================================================\033[39m"
 	./a.out
 
 #   for assembler
